@@ -33,7 +33,6 @@ const resolvers = {
                 return author.id === args.id;
             })
         }
-
     },
     Game: {
         reviews (parent) {
@@ -60,7 +59,15 @@ const resolvers = {
                 return game.id === parent.game_id;
             })
         }
-    }
+    },
+            Mutation: {
+            deleteGame(parent,args,context) {
+                db.games = db.games.filter((game) => {
+                    return game.id !== args.id
+                })
+                return db.games;
+            }
+        }
 }
 
 //server setup
